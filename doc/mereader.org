@@ -1,0 +1,29 @@
+* Introduction
+* Feature List
+** Implemented
+** Wip
+** Iced
+* Environement definition
+** Component list
+*** Hardware
+   |---------------------------------+-----------------------------|
+   | component list                  | documentation               |
+   |---------------------------------+-----------------------------|
+   | Raspberry pi Zero W v1.1        | [[https://cdn.sparkfun.com/assets/learn_tutorials/6/7/6/PiZero_1.pdf][pinout]], [[https://datasheets.raspberrypi.com/rpizero/raspberry-pi-zero-w-reduced-schematics.pdf][detailed schematics]] |
+   | WaveShare 7.5in E-Paper HAT     | [[https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi][doc]], [[https://files.waveshare.com/upload/8/87/E-Paper-Driver-HAT-Schematic.pdf][detailed schematics]]    |
+   | WaveShare 7.5in E-Paper display | [[https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi][doc]]                         |
+
+*** Software
+    [[https://www.raspberrypi.com/software/operating-systems/][Raspberry Pi's GNU/Linux LITE distribution]]
+    [[https://mupdf.readthedocs.io/en/latest/quick-start-guide.html#][MuPDF]]
+
+** Build materials
+   In addition to aquiring the hardware and software components,
+   you're going to need the following materials:
+
+   - Soldering Iron
+   - Male Header pins
+
+* Assembling hardware
+* Installing software
+* Loading books
