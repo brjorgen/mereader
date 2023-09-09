@@ -1,7 +1,13 @@
 * Introduction
 * Feature List
+- [ ] read EPUBs
+- [ ] read PDFs
+- [ ] buttons change pages
+- [ ] connect to book servers
 ** Implemented
 ** Wip
+- [ ] write a .gitignore
+
 ** Iced
 * Environement definition
 ** Component list
