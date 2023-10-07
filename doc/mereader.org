@@ -1,14 +1,25 @@
 * Introduction
+
 * Feature List
 - [ ] read EPUBs
 - [ ] read PDFs
 - [ ] buttons change pages
 - [ ] connect to book servers
-** Implemented
-** Wip
-- [ ] write a .gitignore
 
+
+** Implemented
+- [x] write a .gitignore
+- [x] install the Rasoberry Pi OS on the board
+- [x] connect the board to the internet
+- [x] start an SSH session
+
+** Wip
+- [ ] write or use an epub parser
+  
 ** Iced
+
+
+
 * Environement definition
 ** Component list
 *** Hardware
@@ -27,9 +38,48 @@
    In addition to aquiring the hardware and software components,
    you're going to need the following materials:
 
-   - Soldering Iron
-   - Male Header pins
+   - soldering Iron
+   - male Header pins
+   - micro USB and microHDMI cables
+   - micro SD card with enough space to hold the OS and some books
 
+
+* Setting up the Raspberry Pi for development
+
+1. Download the Raspberry Pi OS and use [[https://etcher.balena.io/][Balena etcher]] or [[https://www.raspberrypi.com/software/][Raspberry Pi Imager]] to install it on the SD card.
+2. Plug in the micro SD card, a keyboard and a display.
+3. Connect the board to a power supply with the micro USB port labelled "PWR".
+4. Follow the booting instructions and create a user.
+5. Configure the network:
+   - use src_bash{sudo raspi-config}, select System Options > Wireless LAN, enter your network's SSID and password.
+   - alternatively, open the src_bash{wpa_supplicant} config file: src_bash{sudo nano /etc/wpa_supplicant/wpa_supplicant.conf}.
+     The config file needs these informations:
+#+BEGIN_SRC json
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+country=<Insert 2 letter country code here>
+update_config=1
+
+network={
+ ssid="<Name of your wireless LAN>"
+ psk="<Password for your wireless LAN>"
+}
+#+END_SRC
+     Then attempt to connect: src_bash{sudo wpa_supplicant wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf}.
+   - If none of these options work, you can try:
+
+     
 * Assembling hardware
+
+
+
 * Installing software
+
+
+
 * Loading books
+
+
+
+
+
+
