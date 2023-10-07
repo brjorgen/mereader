@@ -51,10 +51,10 @@
 3. Connect the board to a power supply with the micro USB port labelled "PWR".
 4. Follow the booting instructions and create a user.
 5. Configure the network:
-   - use src_bash{sudo raspi-config}, select System Options > Wireless LAN, enter your network's SSID and password.
-   - alternatively, open the src_bash{wpa_supplicant} config file: src_bash{sudo nano /etc/wpa_supplicant/wpa_supplicant.conf}.
+   - use src_shell{sudo raspi-config}, select src_shell{System Options} > src_shell{Wireless LAN}, enter your network's SSID and password.
+   - alternatively, open the src_shell{wpa_supplicant} config file: src_shell{sudo nano /etc/wpa_supplicant/wpa_supplicant.conf}.
      The config file needs these informations:
-#+BEGIN_SRC json
+#+BEGIN_SRC shell
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 country=<Insert 2 letter country code here>
 update_config=1
@@ -64,7 +64,7 @@ network={
  psk="<Password for your wireless LAN>"
 }
 #+END_SRC
-     Then attempt to connect: src_bash{sudo wpa_supplicant wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf}.
+     Then attempt to connect: src_shell{sudo wpa_supplicant wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf}.
    - If none of these options work, you can try:
 
      
