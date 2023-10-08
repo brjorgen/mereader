@@ -1,20 +1,18 @@
 * Introduction
 
 * Feature List
-- [ ] read EPUBs
-- [ ] read PDFs
-- [ ] buttons change pages
-- [ ] connect to book servers
+- [ ] Read EPUBs
+- [ ] Read PDFs
+- [ ] Buttons change pages
+- [ ] Connect to book servers
 
 
 ** Implemented
-- [x] write a .gitignore
-- [x] install the Rasoberry Pi OS on the board
-- [x] connect the board to the internet
-- [x] start an SSH session
+- [x] Write a .gitignore
+- [x] Setup the board
 
 ** Wip
-- [ ] write or use an epub parser
+- [ ] Write or use an ePub parser
   
 ** Iced
 
@@ -24,11 +22,11 @@
 ** Component list
 *** Hardware
    |---------------------------------+-----------------------------|
-   | component list                  | documentation               |
+   | Component list                  | Documentation               |
    |---------------------------------+-----------------------------|
-   | Raspberry pi Zero W v1.1        | [[https://cdn.sparkfun.com/assets/learn_tutorials/6/7/6/PiZero_1.pdf][pinout]], [[https://datasheets.raspberrypi.com/rpizero/raspberry-pi-zero-w-reduced-schematics.pdf][detailed schematics]] |
-   | WaveShare 7.5in E-Paper HAT     | [[https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi][doc]], [[https://files.waveshare.com/upload/8/87/E-Paper-Driver-HAT-Schematic.pdf][detailed schematics]]    |
-   | WaveShare 7.5in E-Paper display | [[https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi][doc]]                         |
+   | Raspberry pi Zero W v1.1        | [[https://cdn.sparkfun.com/assets/learn_tutorials/6/7/6/PiZero_1.pdf][Pinout]], [[https://datasheets.raspberrypi.com/rpizero/raspberry-pi-zero-w-reduced-schematics.pdf][detailed schematics]] |
+   | WaveShare 7.5in E-Paper HAT     | [[https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi][Doc]], [[https://files.waveshare.com/upload/8/87/E-Paper-Driver-HAT-Schematic.pdf][detailed schematics]]    |
+   | WaveShare 7.5in E-Paper display | [[https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi][Doc]]                         |
 
 *** Software
     [[https://www.raspberrypi.com/software/operating-systems/][Raspberry Pi's GNU/Linux LITE distribution]]
@@ -38,21 +36,28 @@
    In addition to aquiring the hardware and software components,
    you're going to need the following materials:
 
-   - soldering Iron
-   - male Header pins
-   - micro USB and microHDMI cables
-   - micro SD card with enough space to hold the OS and some books
+   - Soldering Iron
+   - Male Header pins
+   - Micro USB and microHDMI cables
+   - Micro SD card with enough space to hold the OS and some books
 
 
-* Setting up the Raspberry Pi for development
+* Setting up the Raspberry Pi
 
-1. Download the Raspberry Pi OS and use [[https://etcher.balena.io/][Balena etcher]] or [[https://www.raspberrypi.com/software/][Raspberry Pi Imager]] to install it on the SD card.
-2. Plug in the micro SD card, a keyboard and a display.
-3. Connect the board to a power supply with the micro USB port labelled "PWR".
-4. Follow the booting instructions and create a user.
-5. Configure the network:
-   - use src_shell{sudo raspi-config}, select src_shell{System Options} > src_shell{Wireless LAN}, enter your network's SSID and password.
-   - alternatively, open the src_shell{wpa_supplicant} config file: src_shell{sudo nano /etc/wpa_supplicant/wpa_supplicant.conf}.
+We start by installing the Raspberry Pi OS on the board, creating a user, connecting to a network, and setting up an SSH session.
+
+
+** Standard setup
+
+1. Booting
+   - Download the Raspberry Pi OS and use [[https://etcher.balena.io/][Balena etcher]] or [[https://www.raspberrypi.com/software/][Raspberry Pi Imager]] to install it on the SD card.
+   - Plug in the micro SD card, a keyboard and a display. If you cant use a monitor or keyboard, see the next section.
+   - Connect the board to a power supply with the micro USB port labelled "PWR".
+   - Follow the first-boot wizard instructions and create a user.
+
+2. Configuring the network
+   - Use ~sudo raspi-config~, select ~System Options~ > ~Wireless LAN~, enter your network's SSID and password.
+   - Alternatively, open the ~wpa_supplicant~ config file: ~sudo nano /etc/wpa_supplicant/wpa_supplicant.conf~.
      The config file needs these informations:
 #+BEGIN_SRC shell
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -64,8 +69,33 @@ network={
  psk="<Password for your wireless LAN>"
 }
 #+END_SRC
-     Then attempt to connect: src_shell{sudo wpa_supplicant wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf}.
-   - If none of these options work, you can try:
+   Save and exit, and connect to the network: ~sudo wpa_supplicant wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf~.
+
+If none of these options work, you can try:
+   - Waiting a few minutes: it takes a little while for the Raspberry Pi to boot up and register on the network.
+   - Unplugging any over-consumming device: some backlit keyboards and mice suck up too much power for the Raspberry Pi to work properly.
+   - Verifying that you're attempting to connect to the 2.4 GHz band of your network: some Raspberry Pi boards don't support 5 GHz networks.
+
+3. Enabling SSH: run ~sshd~, and write down your IP adress with ~ifconfig~
+
+
+** Headless setup.
+
+If you cant use a monitor or keyboard, you can use the Advanced Menu of the Raspberry Pi Imager to create a user, connect to the network, and enable SSH.
+
+Alternatively, you can add the required config files to the boot partition of the SD Card:
+   - Access the boot partition from a Linux or Windows machine.
+   - Create a user configuration file: run ~echo "myuser:$(echo 'mypassword' | openssl passwd -6 -stdin)" > userconf~. Replace ~myuser~ and ~mypassword~.
+   - Create a ~wpa_supplicant.conf~ file and add the contents from the code block of step 2 in the previous section.
+   - Create an empty file called ~ssh~.
+   - If you're using Windows, make sure it didn't suffix any of the files with ~.txt~.
+   - Eject the SD card, put it in the Raspberry Pi and boot it up.
+
+
+** Connecting via ssh
+
+On your machine, run ~
+
 
      
 * Assembling hardware
