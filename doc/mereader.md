@@ -30,18 +30,18 @@
 
 ### Hardware
 
-| Component list                  | Documentation                                                                                                                                                                             |
-| Raspberry pi Zero W v1.1        | [https://cdn.sparkfun.com/assets/learn_tutorials/6/7/6/PiZero_1.pdf](Pinout),[https://datasheets.raspberrypi.com/rpizero/raspberry-pi-zero-w-reduced-schematics.pdf](detailed schematics) |
-| WaveShare 7.5in E-Paper HAT     | [https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi](Doc), [https://files.waveshare.com/upload/8/87/E-Paper-Driver-HAT-Schematic.pdf](schematics)        |
-| WaveShare 7.5in E-Paper display | [https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi](Doc)                                                                                                |
-| Micro SD card                   |                                                                                                                                                                                           |
-| Micro HDMI and micro USB cables |                                                                                                                                                                                           |
+| Component list                  | Documentation                                                                                                                                                                              |
+| Raspberry pi Zero W v1.1        | [Pinout](https://cdn.sparkfun.com/assets/learn_tutorials/6/7/6/PiZero_1.pdf), [detailed schematics](https://datasheets.raspberrypi.com/rpizero/raspberry-pi-zero-w-reduced-schematics.pdf) |
+| WaveShare 7.5in E-Paper HAT     | [Doc](https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi), [schematics](https://files.waveshare.com/upload/8/87/E-Paper-Driver-HAT-Schematic.pdf)         |
+| WaveShare 7.5in E-Paper display | [Doc](https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi)                                                                                                 |
+| Micro SD card                   |                                                                                                                                                                                            |
+| Micro HDMI and micro USB cables |                                                                                                                                                                                            |
 
 
 ### Software
 
-- [https://www.raspberrypi.com/software/operating-systems/](Raspberry Pi's GNU/Linux LITE distribution).
-- [https://mupdf.readthedocs.io/en/latest/quick-start-guide.html#](MuPDF).
+- [Raspberry Pi's GNU/Linux LITE distribution](https://www.raspberrypi.com/software/operating-systems/).
+- [MuPDF](https://mupdf.readthedocs.io/en/latest/quick-start-guide.html#).
 
     
 ## Build materials
@@ -64,18 +64,18 @@ There are 3 ways to go from here: using the Raspberry Pi software, setting up ma
 
 ## Raspberry Pi Imager
 
-1. Download the [https://www.raspberrypi.com/software/](Raspberry Pi Imager).
+1. Download the [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
 2. Plug in the micro SD card and start the Imager.
 3. Select an OS: we chose the Raspberry Pi OS Lite.
    ![](./images/menu.png)
    ![](./images/os1.png)
    ![](./images/os2.png)
 4. Pre-configure the OS: press Ctrl-Shift-X or click on the settings icon.
-   4.1. Enable SSH.
+   1. Enable SSH.
    ![](./images/ssh.png)
-   4.2. Create a user.
+   2. Create a user.
    ![](./images/user.png)
-   4.3. Setup the network. Make sure you select your country's country code.
+   3. Setup the network. Make sure you select your country's country code.
    ![](./images/network.png)
 5. Save the configuration and exit the settings.
 6. Select the micro USB in the Storage menu.
@@ -89,7 +89,7 @@ The Raspberry Pi will boot and get configured automatically. After a while, you 
 ## Manual setup
 
 1. Booting
-   1. Download the [https://www.raspberrypi.com/software/operating-systems/](Raspberry Pi's OS) and use [https://etcher.balena.io/](Balena etcher) to install it on the SD card.
+   1. Download the [Raspberry Pi's OS](https://www.raspberrypi.com/software/operating-systems/) and use [Balena etcher](https://etcher.balena.io/) to install it on the SD card.
    2. Insert the micro SD card, a keyboard and a display. If you cant use a monitor or keyboard, see the next section.
    3. Connect the board to a power supply with the micro USB port labeled "PWR".
    4. Follow the first-boot wizard instructions and create a user.
@@ -122,7 +122,7 @@ If none of these options work, you can try:
 If you cant use a monitor or keyboard, you can add the required config files to the boot partition of the SD Card:
 
 
-1. Download the [https://www.raspberrypi.com/software/operating-systems/](Raspberry Pi's OS) and use [https://etcher.balena.io/](Balena etcher) to install it on the SD card.
+1. Download  the [Raspberry Pi's OS](https://www.raspberrypi.com/software/operating-systems/) and use [Balena etcher](https://etcher.balena.io/) to install it on the SD card.
 2. Access the boot partition from a Linux or Windows machine.
 3. Create a user configuration file: run `echo "myuser:$(echo 'mypassword' | openssl passwd -6 -stdin)" > userconf`. Replace `myuser` and `mypassword`.
 4. Create a `wpa_supplicant.conf` file and add the contents from the code block of step 2 in the previous section.
