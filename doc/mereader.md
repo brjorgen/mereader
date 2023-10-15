@@ -31,6 +31,7 @@
 ### Hardware
 
 | Component list                  | Documentation                                                                                                                                                                              |
+|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Raspberry pi Zero W v1.1        | [Pinout](https://cdn.sparkfun.com/assets/learn_tutorials/6/7/6/PiZero_1.pdf), [detailed schematics](https://datasheets.raspberrypi.com/rpizero/raspberry-pi-zero-w-reduced-schematics.pdf) |
 | WaveShare 7.5in E-Paper HAT     | [Doc](https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi), [schematics](https://files.waveshare.com/upload/8/87/E-Paper-Driver-HAT-Schematic.pdf)         |
 | WaveShare 7.5in E-Paper display | [Doc](https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi)                                                                                                 |
@@ -55,7 +56,7 @@ In addition to acquiring the hardware and software components, you're going to n
 
 # Setting up the Raspberry Pi
 
-We start by installing the Raspberry Pi OS on the board, creating a user, connecting to a network, and setting up an SSH session.
+We start by **installing the Raspberry Pi OS** on the board, **creating a user**, **connecting to a network**, and **setting up an SSH session**.
 
 There are 3 ways to go from here: using the Raspberry Pi software, setting up manually, and setting up headless.
 
@@ -66,22 +67,16 @@ There are 3 ways to go from here: using the Raspberry Pi software, setting up ma
 
 1. Download the [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
 2. Plug in the micro SD card and start the Imager.
-3. Select an OS: we chose the Raspberry Pi OS Lite.
-   ![](./images/menu.png)
-   ![](./images/os1.png)
-   ![](./images/os2.png)
-4. Pre-configure the OS: press Ctrl-Shift-X or click on the settings icon.
-   1. Enable SSH.
-   ![](./images/ssh.png)
-   2. Create a user.
-   ![](./images/user.png)
-   3. Setup the network. Make sure you select your country's country code.
-   ![](./images/network.png)
-5. Save the configuration and exit the settings.
-6. Select the micro USB in the Storage menu.
-   ![](./images/menu2.png)
-7. Click "Write" and wait for the installation. Eject and remove the micro SD card.
-8. Insert the micro SD card, and connect the board to a power supply with the micro USB port labeled "PWR".
+3. Select an OS: we chose the Raspberry Pi OS Lite.  
+   <img src="./images/menu.png" height="200px"> <img src="./images/os1.png" height="200px"> <img src="./images/os2.png" height="200px">
+4. Pre-configure the OS: press `Ctrl-Shift-X` or click on the settings icon.  
+   Enable SSH, create a user, and setup the network. Make sure you select your country's country code.
+   <img src="./images/ssh.png" height="200px"> <img src="./images/user.png" height="200px"> <img src="./images/network.png" height="200px">
+6. Save the configuration and exit the settings.
+7. Select the micro USB in the Storage menu.  
+   <img src="./images/menu2.png" height="200px">
+8. Click "Write" and wait for the installation. Eject and remove the micro SD card.
+9. Insert the micro SD card, and connect the board to a power supply with the micro USB port labeled "PWR".
 
 The Raspberry Pi will boot and get configured automatically. After a while, you should be able to access the Pi via SSH.
 
@@ -89,32 +84,33 @@ The Raspberry Pi will boot and get configured automatically. After a while, you 
 ## Manual setup
 
 1. Booting
-   1. Download the [Raspberry Pi's OS](https://www.raspberrypi.com/software/operating-systems/) and use [Balena etcher](https://etcher.balena.io/) to install it on the SD card.
-   2. Insert the micro SD card, a keyboard and a display. If you cant use a monitor or keyboard, see the next section.
-   3. Connect the board to a power supply with the micro USB port labeled "PWR".
-   4. Follow the first-boot wizard instructions and create a user.
+   - Download the [Raspberry Pi's OS](https://www.raspberrypi.com/software/operating-systems/) and use [Balena etcher](https://etcher.balena.io/) to install it on the SD card.
+   - Insert the micro SD card, a keyboard and a display. If you cant use a monitor or keyboard, see the next section.
+   - Connect the board to a power supply with the micro USB port labeled "PWR".
+   - Follow the first-boot wizard instructions and create a user.
 
 2. Configuring the network
-   1. Use `sudo raspi-config`, select `System Options` > `Wireless LAN`, enter your network's SSID and password.
-   2. Alternatively, open the `wpa_supplicant` config file: `sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`. The config file needs these informations:
-```
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-country=<Insert 2 letter country code here>
-update_config=1
+    - Use `sudo raspi-config`, select `System Options` > `Wireless LAN`, enter your network's SSID and password.
+    - Alternatively, open the `wpa_supplicant` config file: `sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`. The config file needs these informations:
+      ```
+      ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+      country=<Insert 2 letter country code here>
+      update_config=1
 
-network={
- ssid="<Name of your wireless LAN>"
- psk="<Password for your wireless LAN>"
-}
-```
-   3. Save and exit, and connect to the network: `sudo wpa_supplicant wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf`.
-
-If none of these options work, you can try:
-   - Waiting a few minutes: it takes a little while for the Raspberry Pi to boot up and register on the network.
-   - Unplugging any over-consuming device: some back-lit keyboards and mice suck up too much power for the Raspberry Pi to work properly.
-   - Verifying that you're attempting to connect to the 2.4 GHz band of your network: some Raspberry Pi boards don't support 5 GHz networks.
+      network={
+      ssid="<Name of your wireless LAN>"
+      psk="<Password for your wireless LAN>"
+      }
+      ```
+    - Save and exit, and connect to the network: `sudo wpa_supplicant wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf`.
 
 3. Enabling SSH: run `sshd`, and write down your IP address with `ifconfig`.
+
+
+> If you can't connect to a network, you can try:
+> - Waiting a few minutes: it takes a little while for the Raspberry Pi to boot up and register on the network.
+> - Unplugging any over-consuming device: some back-lit keyboards and mice suck up too much power for the Raspberry Pi to work properly.
+> - Verifying that you're attempting to connect to the 2.4 GHz band of your network: some Raspberry Pi boards don't support 5 GHz networks.
 
 
 ## Headless setup
@@ -129,7 +125,7 @@ If you cant use a monitor or keyboard, you can add the required config files to 
 5. Create an empty file called `ssh`.
 6. Eject the SD card, put it in the Raspberry Pi and boot it up.
 
-If you're using Windows, make sure it didn't suffix any of the files with `.txt`.
+> If you're using Windows, make sure it didn't suffix any of the files with `.txt`.
 
 
 # Connecting via ssh
