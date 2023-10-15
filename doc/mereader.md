@@ -36,7 +36,8 @@
 | WaveShare 7.5in E-Paper HAT     | [Doc](https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi), [schematics](https://files.waveshare.com/upload/8/87/E-Paper-Driver-HAT-Schematic.pdf)         |
 | WaveShare 7.5in E-Paper display | [Doc](https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT_Manual#Working_With_Raspberry_Pi)                                                                                                 |
 | Micro SD card                   |                                                                                                                                                                                            |
-| Micro HDMI and micro USB cables |                                                                                                                                                                                            |
+| Micro USB cable (power)                   |                                                                                                                                                                                            |
+| Micro HDMI and micro USB cables (optional)  |                                                                                                                                                                                            |
 
 
 ### Software
@@ -131,6 +132,15 @@ If you cant use a monitor or keyboard, you can add the required config files to 
 # Connecting via ssh
 
 On your machine, run ~
+
+
+# Configuration.
+
+1. In the SSH session, run `sudo raspi-config`. Choose Interfacing Options -> SPI -> Yes Enable SPI interface.
+
+
+## Install requirements
+
 
 
      
