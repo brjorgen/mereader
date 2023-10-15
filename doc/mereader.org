@@ -62,19 +62,20 @@ There are 3 ways to go from here: using the Raspberry Pi software, setting up ma
 1. Download the [[https://www.raspberrypi.com/software/][Raspberry Pi Imager]].
 2. Plug in the micro SD card and start the Imager.
 3. Select an OS: we chose the Raspberry Pi OS Lite.
-   [[./images/menu.png][]]
-   [[./images/os1.png][]]
-   [[./images/os2.png][]]
+   #+ATTR_HTML: :height 100px
+   [[./images/menu.png]]
+   [[./images/os1.png]]
+   [[./images/os2.png]]
 4. Pre-configure the OS: press Ctrl-Shift-X or click on the settings icon.
    4.1. Enable SSH.
-   [[./images/ssh.png][]]
+   [[./images/ssh.png]]
    4.2. Create a user.
    [[./images/user.png]]
    4.3. Setup the network. Make sure you select your country's country code.
    [[./images/network.png]]
 5. Save the configuration and exit the settings.
 6. Select the micro USB in the Storage menu.
-   [[./images/menu2.png][]]
+   [[./images/menu2.png]]
 7. Click 'Write' and wait for the installation. Eject and remove the micro SD card.
 8. Insert the micro SD card, and connect the board to a power supply with the micro USB port labeled "PWR".
 
