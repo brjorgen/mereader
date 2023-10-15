@@ -137,15 +137,14 @@ On your machine, run ~
 # Configuration.
 
 1. In the SSH session, run `sudo raspi-config`. Choose Interfacing Options -> SPI -> Yes Enable SPI interface.
+2. Run `sh install=the-stuff.sh` to install the dependencies.
+3. Run `git clone https://github.com/waveshare/e-Paper.git` to install the demo repo.
 
 
-## Install requirements
-
-
-
-     
 # Assembling hardware
 
+1. Run `sudo poweroff` in the SSH session. Wait for the LED to be off and unplug everything.
+2. Solder 40 pins to the Pi and connect it to the HAT.
 
 
 # Installing software
